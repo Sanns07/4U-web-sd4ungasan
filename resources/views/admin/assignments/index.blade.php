@@ -1,0 +1,28 @@
+@extends('layouts.admin')
+
+@section('title', 'Penugasan Mengajar — Panel Admin')
+@section('admin_page', 'assignments')
+
+@section('content')
+    <header class="admin-page-head">
+        <div class="admin-breadcrumb"><span><a href="{{ route('admin.dashboard') }}">Admin</a></span><span>Akademik</span><span>Penugasan Mengajar</span></div>
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3"><div><span class="eyebrow">Guru · mapel · kelas</span><h1>Penugasan mengajar.</h1><p class="text-muted-warm mb-0">Hubungkan guru dan mata pelajaran aktif dengan kelas pada periode yang dipilih.</p></div><a class="btn btn-primary" href="{{ route('admin.assignments.create') }}">+ Tambah Penugasan</a></div>
+    </header>
+
+    <form action="{{ route('admin.assignments.index') }}" method="get" class="admin-filter row g-2 align-items-end mb-4">
+        <div class="col-md-6 col-xl-3"><label class="form-label" for="assignment_period">Periode</label><select class="form-select" id="assignment_period" name="period_id"><option value="">Semua periode</option>@foreach($periods as $period)<option value="{{ $period->id }}" @selected((int) $selectedPeriodId === $period->id)>{{ $period->academic_year }} · {{ $period->semester->label() }}{{ $period->is_active ? ' (aktif)' : '' }}</option>@endforeach</select></div>
+        <div class="col-md-6 col-xl-2"><label class="form-label" for="assignment_class">Kelas</label><select class="form-select" id="assignment_class" name="class_id"><option value="">Semua kelas</option>@foreach($classes as $schoolClass)<option value="{{ $schoolClass->id }}" @selected((int) request('class_id') === $schoolClass->id)>{{ $schoolClass->name }}</option>@endforeach</select></div>
+        <div class="col-md-6 col-xl-2"><label class="form-label" for="assignment_teacher">Guru</label><select class="form-select" id="assignment_teacher" name="teacher_id"><option value="">Semua guru</option>@foreach($teachers as $teacher)<option value="{{ $teacher->id }}" @selected((int) request('teacher_id') === $teacher->id)>{{ $teacher->name }}</option>@endforeach</select></div>
+        <div class="col-md-6 col-xl-2"><label class="form-label" for="assignment_subject">Mata pelajaran</label><select class="form-select" id="assignment_subject" name="subject_id"><option value="">Semua mapel</option>@foreach($subjects as $subject)<option value="{{ $subject->id }}" @selected((int) request('subject_id') === $subject->id)>{{ $subject->code }} · {{ $subject->name }}</option>@endforeach</select></div>
+        <div class="col-7 col-xl-2"><label class="form-label" for="assignment_status">Status</label><select class="form-select" id="assignment_status" name="status"><option value="">Semua</option><option value="active" @selected(request('status') === 'active')>Aktif</option><option value="inactive" @selected(request('status') === 'inactive')>Nonaktif</option></select></div>
+        <div class="col-5 col-xl-1 d-grid"><button class="btn btn-outline-primary" type="submit">Filter</button></div>
+    </form>
+
+    <section class="admin-card"><div class="admin-card-header"><div><span class="eyebrow">Hasil data</span><h2 class="h3 mb-0">{{ $assignments->total() }} penugasan</h2></div>@if(request()->hasAny(['period_id', 'class_id', 'teacher_id', 'subject_id', 'status']))<a class="small" href="{{ route('admin.assignments.index') }}">Reset filter</a>@endif</div>
+        @if($assignments->isEmpty())
+            <div class="empty-state m-3"><span class="empty-state-mark">—</span><span class="eyebrow">Belum ada data</span><h2>Penugasan tidak ditemukan.</h2><p class="text-muted-warm">Tambahkan kombinasi guru, mata pelajaran, dan kelas atau ubah filter.</p><a class="btn btn-primary" href="{{ route('admin.assignments.create') }}">+ Tambah Penugasan</a></div>
+        @else
+            <div class="table-responsive table-responsive-stack"><table class="table table-admin align-middle mb-0"><thead><tr><th>Kelas</th><th>Mata pelajaran</th><th>Guru</th><th>Jadwal</th><th>Status</th><th class="text-end">Aksi</th></tr></thead><tbody>@foreach($assignments as $assignment)<tr><td data-label="Kelas"><strong>{{ $assignment->schoolClass->name }}</strong><span class="d-block small text-muted-warm">{{ $assignment->schoolClass->academicPeriod->academic_year }} · {{ $assignment->schoolClass->academicPeriod->semester->label() }}</span></td><td data-label="Mata pelajaran"><strong>{{ $assignment->subject->name }}</strong><span class="d-block small text-muted-warm">{{ $assignment->subject->code }}</span></td><td data-label="Guru">{{ $assignment->teacher->name }}</td><td data-label="Jadwal">{{ $assignment->schedules_count }} slot</td><td data-label="Status"><span class="badge {{ $assignment->is_active ? 'badge-soft-success' : 'text-bg-secondary' }}">{{ $assignment->is_active ? 'Aktif' : 'Nonaktif' }}</span></td><td data-label="Aksi" class="text-end"><div class="row-actions"><a class="btn btn-sm btn-outline-primary" href="{{ route('admin.assignments.edit', $assignment) }}">Edit</a><a class="btn btn-sm btn-outline-primary" href="{{ route('admin.schedules.create', ['assignment_id' => $assignment->id, 'class_id' => $assignment->class_id]) }}">+ Jadwal</a><form action="{{ route('admin.assignments.destroy', $assignment) }}" method="post" data-confirm="Hapus penugasan {{ $assignment->subject->name }} di {{ $assignment->schoolClass->name }}?">@csrf @method('DELETE')<button class="btn btn-sm btn-outline-danger" type="submit">Hapus</button></form></div></td></tr>@endforeach</tbody></table></div>@if($assignments->hasPages())<div class="admin-card-footer">{{ $assignments->links() }}</div>@endif
+        @endif
+    </section>
+@endsection
