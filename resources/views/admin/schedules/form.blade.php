@@ -1,0 +1,20 @@
+@extends('layouts.admin')
+
+@php($editing = $schedule->exists)
+@section('title', ($editing ? 'Edit' : 'Tambah').' Jadwal — Panel Admin')
+@section('admin_page', 'schedules')
+
+@section('content')
+    <header class="admin-page-head"><div class="admin-breadcrumb"><span><a href="{{ route('admin.dashboard') }}">Admin</a></span><span><a href="{{ route('admin.schedules.index') }}">Jadwal</a></span><span>{{ $editing ? 'Edit' : 'Tambah' }}</span></div><span class="eyebrow">Slot mingguan</span><h1>{{ $editing ? 'Edit slot jadwal.' : 'Tambah slot jadwal.' }}</h1><p class="text-muted-warm mb-0">Sistem memeriksa tumpang tindih kelas, guru, dan ruang dalam periode yang sama.</p></header>
+    @include('admin.partials.validation-errors')
+    <form action="{{ $editing ? route('admin.schedules.update', $schedule) : route('admin.schedules.store') }}" method="post">@csrf @if($editing) @method('PUT') @endif
+        <section class="admin-card"><div class="admin-card-body"><div class="row g-3">
+            <div class="col-12"><label class="form-label" for="teaching_assignment_id">Penugasan mengajar <span class="required-mark">*</span></label><select class="form-select @error('teaching_assignment_id') is-invalid @enderror" id="teaching_assignment_id" name="teaching_assignment_id" required><option value="">Pilih penugasan</option>@foreach($assignments as $assignment)<option value="{{ $assignment->id }}" @selected((int) old('teaching_assignment_id', $schedule->teaching_assignment_id) === $assignment->id)>{{ $assignment->schoolClass->name }} · {{ $assignment->subject->code }} — {{ $assignment->teacher->name }} · {{ $assignment->schoolClass->academicPeriod->academic_year }}</option>@endforeach</select>@error('teaching_assignment_id')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+            <div class="col-md-4"><label class="form-label" for="day_of_week">Hari <span class="required-mark">*</span></label><select class="form-select @error('day_of_week') is-invalid @enderror" id="day_of_week" name="day_of_week" required><option value="">Pilih hari</option>@foreach($days as $day)<option value="{{ $day->value }}" @selected(old('day_of_week', $schedule->day_of_week?->value) === $day->value)>{{ $day->label() }}</option>@endforeach</select>@error('day_of_week')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+            <div class="col-md-4"><label class="form-label" for="start_time">Jam mulai <span class="required-mark">*</span></label><input class="form-control @error('start_time') is-invalid @enderror" id="start_time" name="start_time" type="time" value="{{ old('start_time', $editing ? $schedule->startTimeLabel() : '') }}" required>@error('start_time')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+            <div class="col-md-4"><label class="form-label" for="end_time">Jam selesai <span class="required-mark">*</span></label><input class="form-control @error('end_time') is-invalid @enderror" id="end_time" name="end_time" type="time" value="{{ old('end_time', $editing ? $schedule->endTimeLabel() : '') }}" required>@error('end_time')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+            <div class="col-md-5"><label class="form-label" for="room">Ruang</label><input class="form-control @error('room') is-invalid @enderror" id="room" name="room" value="{{ old('room', $schedule->room) }}" placeholder="Kosongkan untuk memakai ruang utama kelas">@error('room')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+            <div class="col-md-7"><label class="form-label" for="notes">Catatan</label><input class="form-control @error('notes') is-invalid @enderror" id="notes" name="notes" value="{{ old('notes', $schedule->notes) }}" placeholder="Opsional">@error('notes')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
+        </div></div><div class="admin-card-footer d-flex justify-content-end gap-2"><a class="btn btn-outline-secondary" href="{{ route('admin.schedules.index') }}">Batal</a><button class="btn btn-primary" type="submit">Simpan Jadwal</button></div></section>
+    </form>
+@endsection
