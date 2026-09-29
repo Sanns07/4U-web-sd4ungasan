@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@yield('meta_description', $publicSchoolName.' — unggul, berkarakter, dan berdampak.')">
     <title>@yield('title', $publicSchoolName)</title>
+    <link rel="icon" type="image/png" href="{{ asset('image/logo_sekolah.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
@@ -20,12 +21,8 @@
         <nav class="navbar navbar-expand-lg" aria-label="Navigasi utama">
             <div class="container py-2">
                 <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}" aria-label="{{ $publicSchoolName }}, beranda">
-                    <span class="school-mark overflow-hidden p-0" aria-hidden="true">
-                        @if ($schoolProfile?->logo_path)
-                            <img class="h-100 w-100" src="{{ asset('storage/'.ltrim($schoolProfile->logo_path, '/')) }}" alt="">
-                        @else
-                            SC
-                        @endif
+                    <span class="school-mark overflow-hidden p-1 bg-white" aria-hidden="true">
+                        <img class="h-100 w-100" src="{{ asset('image/logo_sekolah.png') }}" alt="Logo {{ $publicSchoolName }}" style="object-fit: contain;">
                     </span>
                     <span class="d-flex flex-column">
                         <span class="brand-wordmark">{{ $publicSchoolName }}</span>
@@ -41,7 +38,15 @@
                         <li class="nav-item"><a class="nav-link {{ request()->routeIs('profile') ? 'active' : '' }}" @if(request()->routeIs('profile')) aria-current="page" @endif href="{{ route('profile') }}">Profil</a></li>
                         <li class="nav-item"><a class="nav-link {{ request()->routeIs('teachers.*') ? 'active' : '' }}" @if(request()->routeIs('teachers.*')) aria-current="page" @endif href="{{ route('teachers.index') }}">Guru</a></li>
                         <li class="nav-item"><a class="nav-link {{ request()->routeIs('information.*') ? 'active' : '' }}" @if(request()->routeIs('information.*')) aria-current="page" @endif href="{{ route('information.index') }}">Informasi</a></li>
-                        <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-primary w-100" href="{{ route('login') }}">Masuk Portal</a></li>
+                        @auth
+                            @if (auth()->user()->role === \App\Enums\UserRole::Admin)
+                                <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-primary w-100" href="{{ route('admin.dashboard') }}">Dashboard Admin</a></li>
+                            @else
+                                <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-primary w-100" href="{{ route('student.home') }}">Portal Siswa</a></li>
+                            @endif
+                        @else
+                            <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-primary w-100" href="{{ route('login') }}">Masuk Portal</a></li>
+                        @endauth
                     </ul>
                 </div>
             </div>
@@ -55,12 +60,8 @@
             <div class="row g-4 pb-5">
                 <div class="col-lg-5">
                     <a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-3" href="{{ route('home') }}">
-                        <span class="school-mark overflow-hidden p-0" aria-hidden="true">
-                            @if ($schoolProfile?->logo_path)
-                                <img class="h-100 w-100" src="{{ asset('storage/'.ltrim($schoolProfile->logo_path, '/')) }}" alt="">
-                            @else
-                                SC
-                            @endif
+                        <span class="school-mark overflow-hidden p-1 bg-white" aria-hidden="true">
+                            <img class="h-100 w-100" src="{{ asset('image/logo_sekolah.png') }}" alt="Logo {{ $publicSchoolName }}" style="object-fit: contain;">
                         </span>
                         <span class="font-serif fs-4 text-white">{{ $publicSchoolName }}</span>
                     </a>
