@@ -4,7 +4,24 @@
 @section('meta_description', 'Direktori guru aktif dan publik '.($schoolProfile?->school_name ?: 'SD No. 4 Ungasan').'.')
 
 @section('content')
-    <section class="page-hero"><div class="container"><nav aria-label="Breadcrumb"><ol class="breadcrumb small mb-4"><li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li><li class="breadcrumb-item active" aria-current="page">Direktori guru</li></ol></nav><span class="eyebrow eyebrow-light">Para pendidik</span><h1>Pengetahuan tumbuh<br>dari <em class="text-gold">perjumpaan.</em></h1><p class="lead mt-4 mb-0">Kenali para pendidik aktif yang mendampingi siswa belajar, bereksperimen, dan menemukan suaranya sendiri.</p></div></section>
+    <section class="hero-home d-flex align-items-center py-5">
+        <img src="{{ asset('image/hero-guru.jpeg') }}" alt="Suasana mengajar SD No. 4 Ungasan" style="object-fit:cover;">
+        <div class="container py-lg-4">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <nav aria-label="Breadcrumb">
+                        <ol class="breadcrumb small mb-4">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Direktori guru</li>
+                        </ol>
+                    </nav>
+                    <span class="eyebrow eyebrow-light">Para pendidik</span>
+                    <h1 class="display-3 fw-normal mb-3">Pengetahuan tumbuh<br>dari <em class="text-gold">perjumpaan.</em></h1>
+                    <p class="hero-lead mb-0">Kenali para pendidik aktif yang mendampingi siswa belajar, bereksperimen, dan menemukan suaranya sendiri.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="section-space">
         <div class="container">

@@ -4,12 +4,22 @@
 @section('meta_description', 'Profil, visi misi, dan struktur organisasi '.($schoolProfile?->school_name ?: 'SD No. 4 Ungasan').'.')
 
 @section('content')
-    <section class="page-hero">
-        <div class="container">
-            <nav aria-label="Breadcrumb"><ol class="breadcrumb small mb-4"><li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li><li class="breadcrumb-item active" aria-current="page">Profil sekolah</li></ol></nav>
-            <span class="eyebrow eyebrow-light">Tentang sekolah</span>
-            <h1>Berakar pada nilai.<br><em class="text-gold">Bergerak bersama zaman.</em></h1>
-            <p class="lead mt-4 mb-0">Sejak 1987, kami merawat lingkungan belajar yang menjadikan kecakapan dan kemanusiaan tumbuh beriringan.</p>
+    <section class="hero-home d-flex align-items-center py-5">
+        <img src="{{ asset('image/hero-profil.jpeg') }}" alt="Profil SD No. 4 Ungasan" style="object-fit:cover;">
+        <div class="container py-lg-4">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <nav aria-label="Breadcrumb">
+                        <ol class="breadcrumb small mb-4">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Profil sekolah</li>
+                        </ol>
+                    </nav>
+                    <span class="eyebrow eyebrow-light">Tentang sekolah</span>
+                    <h1 class="display-3 fw-normal mb-3">Berakar pada nilai.<br><em class="text-gold">Bergerak bersama zaman.</em></h1>
+                    <p class="hero-lead mb-0">Sejak 1987, kami merawat lingkungan belajar yang menjadikan kecakapan dan kemanusiaan tumbuh beriringan.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -18,19 +28,15 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
                     <div class="portrait-frame">
-                        @if ($schoolProfile?->logo_path)
-                            <div class="media-placeholder media-placeholder--light p-5"><img class="mw-100 h-auto" src="{{ asset('storage/'.ltrim($schoolProfile->logo_path, '/')) }}" alt="Logo {{ $schoolProfile->school_name }}"></div>
-                        @else
-                            <div class="media-placeholder media-placeholder--light" role="img" aria-label="Gedung utama sekolah"><span>Gedung utama {{ $schoolProfile?->school_name ?: 'SMA Negeri Cendekia' }}</span></div>
-                        @endif
+                        <div class="media-placeholder media-placeholder--light p-5"><img class="mw-100 h-auto" src="{{ asset('image/logo_sekolah.png') }}" alt="Logo {{ $schoolProfile?->school_name ?: 'SD No. 4 Ungasan' }}" style="max-height: 280px; object-fit: contain;"></div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <span class="eyebrow">01 · Identitas</span>
-                    <h2 class="display-5 mb-4">{{ $schoolProfile?->school_name ?: 'Profil sekolah sedang diperbarui' }}</h2>
-                    <p class="fs-5 font-serif fst-italic text-forest">Sekolah menengah yang berpihak pada pertumbuhan setiap siswa.</p>
+                    <h2 class="display-5 mb-4">{{ $schoolProfile?->school_name ?: 'SD No. 4 Ungasan' }}</h2>
+                    <p class="fs-5 font-serif fst-italic text-forest">Sekolah dasar yang berpihak pada pertumbuhan dan karakter setiap siswa.</p>
                     @if ($schoolProfile)
-                        <p class="text-muted-warm">Berada di jantung Kota Denpasar, sekolah kami mempertemukan tradisi lokal, wawasan global, dan pembelajaran berbasis pengalaman dalam komunitas yang inklusif.</p>
+                        <p class="text-muted-warm">Berada di kawasan Ungasan, Kuta Selatan, sekolah kami mempertemukan tradisi dan budaya Bali, pembentukan karakter 7 Kebiasaan Anak Hebat, serta pembelajaran aktif yang bermakna.</p>
                         <dl class="row small mt-4 mb-0">
                             <dt class="col-sm-4 py-2 border-top border-soft">Nama sekolah</dt><dd class="col-sm-8 py-2 border-top border-soft">{{ $schoolProfile->school_name }}</dd>
                             <dt class="col-sm-4 py-2 border-top border-soft">Alamat</dt><dd class="col-sm-8 py-2 border-top border-soft">{{ $schoolProfile->address ?: 'Belum tersedia' }}</dd>

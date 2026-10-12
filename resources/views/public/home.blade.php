@@ -4,7 +4,8 @@
 @section('meta_description', 'Beranda '.($schoolProfile?->school_name ?: 'SD No. 4 Ungasan').' — sekolah dasar unggul, berkarakter, dan berbudaya.')
 
 @section('content')
-    <section class="hero-section text-white py-5">
+    <section class="hero-home d-flex align-items-center py-5">
+        <img src="{{ asset('image/hero-beranda.jpg') }}" alt="Gedung SD No. 4 Ungasan" style="object-fit:cover;">
         <div class="container py-lg-4">
             <div class="row align-items-center g-4">
                 <div class="col-lg-7">
