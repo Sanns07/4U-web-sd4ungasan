@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Direktori guru aktif dan publik SMA Negeri Cendekia.">
+  <title>Direktori Guru — SMA Negeri Cendekia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/simak.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Suggested Blade: resources/views/public/teachers/index.blade.php -->
+  <a class="btn btn-primary skip-link" href="#main-content">Lewati ke konten</a>
+  <header class="site-header sticky-top"><nav class="navbar navbar-expand-lg" aria-label="Navigasi utama"><div class="container py-2"><a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><span class="school-mark" aria-hidden="true">SC</span><span class="d-flex flex-column"><span class="brand-wordmark">SMA Negeri Cendekia</span><span class="brand-subtitle">Unggul · Berkarakter · Berdampak</span></span></a><button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#publicNav" aria-controls="publicNav" aria-expanded="false" aria-label="Buka navigasi"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="publicNav"><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1"><li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li><li class="nav-item"><a class="nav-link" href="profil.html">Profil</a></li><li class="nav-item"><a class="nav-link active" aria-current="page" href="guru.html">Guru</a></li><li class="nav-item"><a class="nav-link" href="informasi.html">Informasi</a></li><li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-primary w-100" href="../auth/login.html">Masuk Portal</a></li></ul></div></div></nav></header>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <nav aria-label="Breadcrumb"><ol class="breadcrumb small mb-4"><li class="breadcrumb-item"><a href="index.html">Beranda</a></li><li class="breadcrumb-item active" aria-current="page">Direktori guru</li></ol></nav>
+        <span class="eyebrow eyebrow-light">Para pendidik</span>
+        <h1>Pengetahuan tumbuh<br>dari <em class="text-gold">perjumpaan.</em></h1>
+        <p class="lead mt-4 mb-0">Kenali para pendidik aktif yang mendampingi siswa belajar, bereksperimen, dan menemukan suaranya sendiri.</p>
+      </div>
+    </section>
+
+    <section class="section-space">
+      <div class="container">
+        <form class="filter-panel rounded p-3 p-md-4 mb-5" action="guru.html" method="get" role="search">
+          <div class="row g-3 align-items-end">
+            <div class="col-md-7"><label class="form-label" for="teacherSearch">Cari guru</label><input class="form-control" id="teacherSearch" name="q" type="search" placeholder="Contoh: Ayu Lestari atau Matematika"></div>
+            <div class="col-md-3"><label class="form-label" for="teacherSubject">Bidang mengajar</label><select class="form-select" id="teacherSubject" name="bidang"><option value="">Semua bidang</option><option>Matematika</option><option>Bahasa</option><option>Ilmu Alam</option><option>Ilmu Sosial</option><option>Seni &amp; Olahraga</option></select></div>
+            <div class="col-md-2 d-grid"><button class="btn btn-primary" type="submit">Cari Guru</button></div>
+          </div>
+        </form>
+
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-end gap-2 mb-4">
+          <div><span class="eyebrow mb-2">46 guru aktif</span><h2 class="h1 mb-0">Direktori pendidik</h2></div>
+          <p class="small text-muted-warm mb-0">Menampilkan 1–8 dari 46 guru</p>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+          <div class="col"><article class="card teacher-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Potret Dra. Ayu Lestari"><span>Potret Dra. Ayu Lestari</span></div><div class="card-body p-4"><h3 class="card-title h4 mb-1">Dra. Ayu Lestari</h3><p class="small fw-semibold text-forest mb-2">Guru Biologi</p><p class="small text-muted-warm mb-0">Eksplorasi sains, ekologi, dan pembelajaran berbasis proyek.</p></div></article></div>
+          <div class="col"><article class="card teacher-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Potret Bagus Mahendra, S.Pd."><span>Potret Bagus Mahendra, S.Pd.</span></div><div class="card-body p-4"><h3 class="card-title h4 mb-1">Bagus Mahendra, S.Pd.</h3><p class="small fw-semibold text-forest mb-2">Guru Sejarah</p><p class="small text-muted-warm mb-0">Sejarah Indonesia, literasi arsip, dan budaya lokal Bali.</p></div></article></div>
+          <div class="col"><article class="card teacher-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Potret Ratna Dewi, M.Pd."><span>Potret Ratna Dewi, M.Pd.</span></div><div class="card-body p-4"><h3 class="card-title h4 mb-1">Ratna Dewi, M.Pd.</h3><p class="small fw-semibold text-forest mb-2">Guru Matematika</p><p class="small text-muted-warm mb-0">Pemodelan matematika, olimpiade, dan numerasi kontekstual.</p></div></article></div>
+          <div class="col"><article class="card teacher-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Potret Eka Pratama, S.S."><span>Potret Eka Pratama, S.S.</span></div><div class="card-body p-4"><h3 class="card-title h4 mb-1">Eka Pratama, S.S.</h3><p class="small fw-semibold text-forest mb-2">Guru Bahasa Inggris</p><p class="small text-muted-warm mb-0">Komunikasi, debat, dan penulisan kreatif dalam bahasa Inggris.</p></div></article></div>
+          <div class="col"><article class="card teacher-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Potret Ni Made Dewi, S.Pd."><span>Potret Ni Made Dewi, S.Pd.</span></div><div class="card-body p-4"><h3 class="card-title h4 mb-1">Ni Made Dewi, S.Pd.</h3><p class="small fw-semibold text-forest mb-2">Guru Seni Budaya</p><p class="small text-muted-warm mb-0">Seni rupa, kriya, dan pengembangan apresiasi budaya.</p></div></article></div>
+          <div class="col"><article class="card teacher-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Potret I Gede Surya, M.Or."><span>Potret I Gede Surya, M.Or.</span></div><div class="card-body p-4"><h3 class="card-title h4 mb-1">I Gede Surya, M.Or.</h3><p class="small fw-semibold text-forest mb-2">Guru PJOK</p><p class="small text-muted-warm mb-0">Kebugaran, permainan tim, dan gaya hidup sehat berkelanjutan.</p></div></article></div>
+          <div class="col"><article class="card teacher-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Potret Sinta Maharani, S.Pd."><span>Potret Sinta Maharani, S.Pd.</span></div><div class="card-body p-4"><h3 class="card-title h4 mb-1">Sinta Maharani, S.Pd.</h3><p class="small fw-semibold text-forest mb-2">Guru Bahasa Indonesia</p><p class="small text-muted-warm mb-0">Literasi, kajian sastra, dan penulisan argumentatif.</p></div></article></div>
+          <div class="col"><article class="card teacher-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Potret Agus Santosa, M.Pd."><span>Potret Agus Santosa, M.Pd.</span></div><div class="card-body p-4"><h3 class="card-title h4 mb-1">Agus Santosa, M.Pd.</h3><p class="small fw-semibold text-forest mb-2">Guru Fisika</p><p class="small text-muted-warm mb-0">Mekanika, laboratorium, dan rekayasa sederhana.</p></div></article></div>
+        </div>
+
+        <nav class="mt-5" aria-label="Halaman direktori guru"><ul class="pagination justify-content-center flex-wrap"><li class="page-item disabled"><span class="page-link" aria-disabled="true">Sebelumnya</span></li><li class="page-item active" aria-current="page"><span class="page-link">1</span></li><li class="page-item"><a class="page-link" href="guru.html?page=2">2</a></li><li class="page-item"><a class="page-link" href="guru.html?page=3">3</a></li><li class="page-item"><a class="page-link" href="guru.html?page=2">Berikutnya</a></li></ul></nav>
+      </div>
+    </section>
+
+    <section class="state-preview section-space-sm">
+      <div class="container">
+        <div class="section-heading"><span class="eyebrow">State referensi</span><h2 class="h1">Keadaan tanpa data.</h2><p>Dua state ini menjadi alternatif bagian daftar di atas, bukan tampil bersamaan dalam implementasi Blade.</p></div>
+        <div class="accordion" id="teacherStates">
+          <div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#teacherNoResult" aria-expanded="true" aria-controls="teacherNoResult">Hasil pencarian tidak ditemukan</button></h3><div id="teacherNoResult" class="accordion-collapse collapse show" data-bs-parent="#teacherStates"><div class="accordion-body p-3"><div class="empty-state"><span class="empty-state-mark" aria-hidden="true">?</span><h4 class="h3">Guru tidak ditemukan</h4><p class="text-muted-warm">Tidak ada guru yang cocok dengan kata kunci “Robotika”. Coba nama atau bidang mengajar lain.</p><a class="btn btn-outline-primary" href="guru.html">Hapus Pencarian</a></div></div></div></div>
+          <div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#teacherEmpty" aria-expanded="false" aria-controls="teacherEmpty">Direktori belum memiliki data</button></h3><div id="teacherEmpty" class="accordion-collapse collapse" data-bs-parent="#teacherStates"><div class="accordion-body p-3"><div class="empty-state"><span class="empty-state-mark" aria-hidden="true">—</span><h4 class="h3">Direktori sedang disiapkan</h4><p class="text-muted-warm mb-0">Profil guru aktif dan publik akan tampil di halaman ini setelah diperbarui oleh sekolah.</p></div></div></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer pt-5 pb-4"><div class="container"><div class="row g-4 pb-5"><div class="col-lg-5"><a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-3" href="index.html"><span class="school-mark" aria-hidden="true">SC</span><span class="font-serif fs-4 text-white">SMA Negeri Cendekia</span></a><p class="mb-0 col-lg-9">Ruang belajar yang menumbuhkan pengetahuan, karakter, dan keberanian untuk memberi dampak.</p></div><div class="col-6 col-lg-2 ms-lg-auto"><h2 class="h6 text-white mb-3">Jelajahi</h2><ul class="list-unstyled small d-grid gap-2 mb-0"><li><a href="profil.html">Profil sekolah</a></li><li><a href="guru.html">Direktori guru</a></li><li><a href="informasi.html">Berita &amp; pengumuman</a></li></ul></div><div class="col-6 col-lg-3"><h2 class="h6 text-white mb-3">Kontak</h2><address class="small mb-0">Jl. Pendidikan No. 17, Denpasar<br>(0361) 555 017<br>halo@smancendekia.sch.id</address></div></div><div class="d-flex flex-column flex-sm-row justify-content-between gap-2 pt-3 border-top footer-rule small"><span>© <span data-current-year>2026</span> SMA Negeri Cendekia</span><span>Waktu sistem: Asia/Makassar</span></div></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="../assets/js/public.js"></script>
+</body>
+</html>

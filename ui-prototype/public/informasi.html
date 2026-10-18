@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Daftar berita dan pengumuman terbit SMA Negeri Cendekia.">
+  <title>Berita &amp; Pengumuman — SMA Negeri Cendekia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/simak.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Suggested Blade: resources/views/public/posts/index.blade.php -->
+  <!-- View yang sama dapat dipakai untuk route /berita dan /pengumuman dengan filter tipe dari controller. -->
+  <a class="btn btn-primary skip-link" href="#main-content">Lewati ke konten</a>
+  <header class="site-header sticky-top"><nav class="navbar navbar-expand-lg" aria-label="Navigasi utama"><div class="container py-2"><a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><span class="school-mark" aria-hidden="true">SC</span><span class="d-flex flex-column"><span class="brand-wordmark">SMA Negeri Cendekia</span><span class="brand-subtitle">Unggul · Berkarakter · Berdampak</span></span></a><button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#publicNav" aria-controls="publicNav" aria-expanded="false" aria-label="Buka navigasi"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="publicNav"><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1"><li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li><li class="nav-item"><a class="nav-link" href="profil.html">Profil</a></li><li class="nav-item"><a class="nav-link" href="guru.html">Guru</a></li><li class="nav-item"><a class="nav-link active" aria-current="page" href="informasi.html">Informasi</a></li><li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-primary w-100" href="../auth/login.html">Masuk Portal</a></li></ul></div></div></nav></header>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <nav aria-label="Breadcrumb"><ol class="breadcrumb small mb-4"><li class="breadcrumb-item"><a href="index.html">Beranda</a></li><li class="breadcrumb-item active" aria-current="page">Berita &amp; pengumuman</li></ol></nav>
+        <span class="eyebrow eyebrow-light">Ruang informasi</span>
+        <h1>Kabar, agenda,<br>dan hal <em class="text-gold">penting.</em></h1>
+        <p class="lead mt-4 mb-0">Berita sekolah, prestasi siswa, agenda kegiatan, serta pengumuman resmi yang sudah diterbitkan.</p>
+      </div>
+    </section>
+
+    <section class="section-space">
+      <div class="container">
+        <form class="filter-panel rounded p-3 p-md-4 mb-5" action="informasi.html" method="get" role="search">
+          <div class="row g-3 align-items-end">
+            <div class="col-lg-6"><label class="form-label" for="postSearch">Cari informasi</label><input class="form-control" id="postSearch" name="q" type="search" placeholder="Cari judul atau ringkasan"></div>
+            <div class="col-6 col-lg-2"><label class="form-label" for="postType">Jenis</label><select class="form-select" id="postType" name="tipe"><option>Semua</option><option>Berita</option><option>Pengumuman</option></select></div>
+            <div class="col-6 col-lg-2"><label class="form-label" for="postYear">Tahun</label><select class="form-select" id="postYear" name="tahun"><option>2026</option><option>2025</option><option>2024</option></select></div>
+            <div class="col-lg-2 d-grid"><button class="btn btn-primary" type="submit">Terapkan</button></div>
+          </div>
+        </form>
+
+        <ul class="nav nav-pills gap-2 mb-5" aria-label="Filter cepat jenis informasi">
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="informasi.html">Semua <span class="badge text-bg-light ms-1">24</span></a></li>
+          <li class="nav-item"><a class="nav-link text-forest" href="informasi.html?tipe=berita">Berita <span class="badge text-bg-light ms-1">16</span></a></li>
+          <li class="nav-item"><a class="nav-link text-forest" href="informasi.html?tipe=pengumuman">Pengumuman <span class="badge text-bg-light ms-1">8</span></a></li>
+        </ul>
+
+        <article class="card news-card news-card-featured card-hover mb-5">
+          <div class="row g-0">
+            <div class="col-lg-7"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Siswa mempresentasikan karya pada Pekan Karya Cendekia"><span>Siswa mempresentasikan karya pada Pekan Karya Cendekia</span></div></div>
+            <div class="col-lg-5"><div class="card-body p-4 p-lg-5 h-100 d-flex flex-column justify-content-center"><div class="d-flex flex-wrap gap-2 align-items-center mb-3"><span class="badge badge-news">Berita</span><span class="small text-muted-warm">28 Agustus 2026</span></div><h2 class="display-6">Pekan Karya Cendekia 2026: Dari Gagasan Menjadi Solusi</h2><p class="text-muted-warm">Sebanyak 112 karya siswa dipamerkan dalam perayaan lintas disiplin yang melibatkan keluarga dan komunitas.</p><a class="stretched-link fw-semibold text-forest" href="artikel-detail.html">Baca selengkapnya <span aria-hidden="true">→</span></a></div></div>
+          </div>
+        </article>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col"><article class="card news-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Siswa baru mengikuti pengarahan di aula"><span>Siswa baru mengikuti pengarahan di aula</span></div><div class="card-body p-4"><div class="d-flex flex-wrap gap-2 align-items-center mb-3"><span class="badge badge-announcement">Pengumuman</span><span class="small text-muted-warm">26 Agustus 2026</span></div><h2 class="card-title h3">Jadwal Pengenalan Lingkungan Sekolah</h2><p class="text-muted-warm">Rangkaian kegiatan untuk peserta didik baru pada 7–9 September 2026.</p><a class="stretched-link fw-semibold text-forest" href="artikel-detail.html">Baca informasi →</a></div></article></div>
+          <div class="col"><article class="card news-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Tim debat sekolah menerima penghargaan"><span>Tim debat sekolah menerima penghargaan</span></div><div class="card-body p-4"><div class="d-flex flex-wrap gap-2 align-items-center mb-3"><span class="badge badge-news">Berita</span><span class="small text-muted-warm">21 Agustus 2026</span></div><h2 class="card-title h3">Tim Debat Raih Juara Umum Tingkat Provinsi</h2><p class="text-muted-warm">Tiga siswa membawa pulang penghargaan terbaik setelah lima babak kompetisi.</p><a class="stretched-link fw-semibold text-forest" href="artikel-detail.html">Baca selengkapnya →</a></div></article></div>
+          <div class="col"><article class="card news-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Sudut baca baru di perpustakaan sekolah"><span>Sudut baca baru di perpustakaan sekolah</span></div><div class="card-body p-4"><div class="d-flex flex-wrap gap-2 align-items-center mb-3"><span class="badge badge-news">Berita</span><span class="small text-muted-warm">18 Agustus 2026</span></div><h2 class="card-title h3">Perpustakaan Membuka Ruang Baca Kolaboratif</h2><p class="text-muted-warm">Ruang baru dirancang untuk diskusi kecil, riset mandiri, dan klub literasi.</p><a class="stretched-link fw-semibold text-forest" href="artikel-detail.html">Baca selengkapnya →</a></div></article></div>
+          <div class="col"><article class="card news-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Seragam sekolah tersusun rapi"><span>Seragam sekolah tersusun rapi</span></div><div class="card-body p-4"><div class="d-flex flex-wrap gap-2 align-items-center mb-3"><span class="badge badge-announcement">Pengumuman</span><span class="small text-muted-warm">16 Agustus 2026</span></div><h2 class="card-title h3">Ketentuan Seragam Tahun Akademik 2026/2027</h2><p class="text-muted-warm">Panduan pakaian harian, olahraga, dan busana adat bagi seluruh siswa.</p><a class="stretched-link fw-semibold text-forest" href="artikel-detail.html">Baca informasi →</a></div></article></div>
+          <div class="col"><article class="card news-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Siswa menanam pohon di lingkungan sekolah"><span>Siswa menanam pohon di lingkungan sekolah</span></div><div class="card-body p-4"><div class="d-flex flex-wrap gap-2 align-items-center mb-3"><span class="badge badge-news">Berita</span><span class="small text-muted-warm">12 Agustus 2026</span></div><h2 class="card-title h3">Gerakan Seribu Bibit Dimulai dari Sekolah</h2><p class="text-muted-warm">Komunitas sekolah menanam 250 bibit lokal di tiga kawasan kota.</p><a class="stretched-link fw-semibold text-forest" href="artikel-detail.html">Baca selengkapnya →</a></div></article></div>
+          <div class="col"><article class="card news-card card-hover h-100"><div class="media-placeholder media-placeholder--light" role="img" aria-label="Pertemuan orang tua dan sekolah"><span>Pertemuan orang tua dan sekolah</span></div><div class="card-body p-4"><div class="d-flex flex-wrap gap-2 align-items-center mb-3"><span class="badge badge-announcement">Pengumuman</span><span class="small text-muted-warm">8 Agustus 2026</span></div><h2 class="card-title h3">Undangan Pertemuan Orang Tua Kelas X</h2><p class="text-muted-warm">Pertemuan awal semester membahas pendampingan dan komunikasi belajar.</p><a class="stretched-link fw-semibold text-forest" href="artikel-detail.html">Baca informasi →</a></div></article></div>
+        </div>
+
+        <nav class="mt-5" aria-label="Halaman berita dan pengumuman"><ul class="pagination justify-content-center flex-wrap"><li class="page-item disabled"><span class="page-link" aria-disabled="true">Sebelumnya</span></li><li class="page-item active" aria-current="page"><span class="page-link">1</span></li><li class="page-item"><a class="page-link" href="informasi.html?page=2">2</a></li><li class="page-item"><a class="page-link" href="informasi.html?page=3">3</a></li><li class="page-item"><a class="page-link" href="informasi.html?page=4">4</a></li><li class="page-item"><a class="page-link" href="informasi.html?page=2">Berikutnya</a></li></ul></nav>
+      </div>
+    </section>
+
+    <section class="state-preview section-space-sm">
+      <div class="container">
+        <div class="section-heading"><span class="eyebrow">State referensi</span><h2 class="h1">Saat daftar tidak berisi hasil.</h2><p>Gunakan salah satu state berikut sebagai pengganti daftar dan pagination.</p></div>
+        <div class="row g-4">
+          <div class="col-lg-6"><div class="empty-state h-100"><span class="empty-state-mark" aria-hidden="true">?</span><h3 class="h3">Informasi tidak ditemukan</h3><p class="text-muted-warm">Tidak ada hasil untuk “libur semester” pada tahun 2026.</p><a class="btn btn-outline-primary" href="informasi.html">Reset Filter</a></div></div>
+          <div class="col-lg-6"><div class="empty-state h-100"><span class="empty-state-mark" aria-hidden="true">—</span><h3 class="h3">Belum ada informasi terbit</h3><p class="text-muted-warm mb-0">Berita atau pengumuman terbaru akan muncul di halaman ini setelah diterbitkan.</p></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer pt-5 pb-4"><div class="container"><div class="row g-4 pb-5"><div class="col-lg-5"><a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-3" href="index.html"><span class="school-mark" aria-hidden="true">SC</span><span class="font-serif fs-4 text-white">SMA Negeri Cendekia</span></a><p class="mb-0 col-lg-9">Ruang belajar yang menumbuhkan pengetahuan, karakter, dan keberanian untuk memberi dampak.</p></div><div class="col-6 col-lg-2 ms-lg-auto"><h2 class="h6 text-white mb-3">Jelajahi</h2><ul class="list-unstyled small d-grid gap-2 mb-0"><li><a href="profil.html">Profil sekolah</a></li><li><a href="guru.html">Direktori guru</a></li><li><a href="informasi.html">Berita &amp; pengumuman</a></li></ul></div><div class="col-6 col-lg-3"><h2 class="h6 text-white mb-3">Kontak</h2><address class="small mb-0">Jl. Pendidikan No. 17, Denpasar<br>(0361) 555 017<br>halo@smancendekia.sch.id</address></div></div><div class="d-flex flex-column flex-sm-row justify-content-between gap-2 pt-3 border-top footer-rule small"><span>© <span data-current-year>2026</span> SMA Negeri Cendekia</span><span>Waktu sistem: Asia/Makassar</span></div></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="../assets/js/public.js"></script>
+</body>
+</html>

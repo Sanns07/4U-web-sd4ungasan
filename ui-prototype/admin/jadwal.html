@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Kelola jadwal pelajaran Senin sampai Sabtu.">
+<title>Jadwal Pelajaran — Panel Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../assets/css/simak.css" rel="stylesheet">
+</head>
+<body class="admin-body" data-admin-page="schedules">
+<!-- Suggested Blade: resources/views/admin/schedules/index.blade.php + _form.blade.php | Routes: resource /admin/jadwal -->
+<a class="btn btn-primary skip-link" href="#main-content">Lewati ke konten</a>
+<div class="admin-shell">
+<div id="adminShell">
+</div>
+<main class="admin-main" id="main-content">
+<div class="admin-content">
+<header class="admin-page-head">
+<div class="admin-breadcrumb">
+<span>
+<a href="index.html">Admin</a>
+</span>
+<span>Kurikulum</span>
+<span>Jadwal</span>
+</div>
+<div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3">
+<div>
+<span class="eyebrow">Senin—Sabtu</span>
+<h1>Jadwal pelajaran.</h1>
+<p class="text-muted-warm mb-0">Atur slot berdasarkan penugasan dan cegah bentrok kelas maupun guru.</p>
+</div>
+<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#scheduleForm">+ Tambah Slot</button>
+</div>
+</header>
+<section class="admin-card mb-4">
+<div class="admin-card-body">
+<form action="/admin/jadwal" method="get" class="row g-2 align-items-end" data-filter-form>
+<div class="col-md-4">
+<label class="form-label" for="schedule_period">Periode</label>
+<select class="form-select" id="schedule_period" name="period">
+<option>2026/2027 · Ganjil</option>
+</select>
+</div>
+<div class="col-md-4">
+<label class="form-label" for="schedule_class">Kelas</label>
+<select class="form-select" id="schedule_class" name="class">
+<option>XI IPA 1</option>
+<option>XI IPA 2</option>
+</select>
+</div>
+<div class="col-md-2">
+<button class="btn btn-outline-primary w-100" type="submit">Tampilkan</button>
+</div>
+<div class="col-md-2">
+<a class="btn btn-outline-secondary w-100" href="states.html?state=empty-schedule">State Kosong</a>
+</div>
+</form>
+</div>
+</section>
+<section class="admin-card">
+<div class="admin-card-header">
+<div>
+<span class="eyebrow">Kelas terpilih</span>
+<h2 class="h3 mb-0">XI IPA 1</h2>
+</div>
+<span class="badge badge-soft-success">26 slot</span>
+</div>
+<div class="admin-card-body">
+<div class="admin-schedule-board" aria-label="Jadwal mingguan XI IPA 1">
+<div class="schedule-day">
+<h3>Senin</h3>
+<button class="schedule-slot" type="button" data-bs-toggle="modal" data-bs-target="#scheduleForm">
+<span>07.15–08.45</span>
+<strong>Matematika Wajib</strong>
+<small>Ratna Dewi · R-11</small>
+</button>
+<button class="schedule-slot" type="button" data-bs-toggle="modal" data-bs-target="#scheduleForm">
+<span>09.00–10.30</span>
+<strong>Bahasa Indonesia</strong>
+<small>Ni Luh Sari · R-11</small>
+</button>
+</div>
+<div class="schedule-day">
+<h3>Selasa</h3>
+<button class="schedule-slot" type="button" data-bs-toggle="modal" data-bs-target="#scheduleForm">
+<span>07.15–08.45</span>
+<strong>Biologi</strong>
+<small>Ayu Lestari · Lab Bio</small>
+</button>
+<button class="schedule-slot" type="button" data-bs-toggle="modal" data-bs-target="#scheduleForm">
+<span>10.45–12.15</span>
+<strong>Bahasa Inggris</strong>
+<small>Dewi Anggraini · R-11</small>
+</button>
+</div>
+<div class="schedule-day">
+<h3>Rabu</h3>
+<button class="schedule-slot" type="button" data-bs-toggle="modal" data-bs-target="#scheduleForm">
+<span>08.00–09.30</span>
+<strong>Fisika</strong>
+<small>Made Arya · Lab Fisika</small>
+</button>
+</div>
+<div class="schedule-day">
+<h3>Kamis</h3>
+<button class="schedule-slot" type="button" data-bs-toggle="modal" data-bs-target="#scheduleForm">
+<span>07.15–08.45</span>
+<strong>Matematika Wajib</strong>
+<small>Ratna Dewi · R-11</small>
+</button>
+</div>
+<div class="schedule-day">
+<h3>Jumat</h3>
+<button class="schedule-slot" type="button" data-bs-toggle="modal" data-bs-target="#scheduleForm">
+<span>07.15–08.45</span>
+<strong>Pendidikan Agama</strong>
+<small>Komang Sudirta · R-11</small>
+</button>
+</div>
+<div class="schedule-day">
+<h3>Sabtu</h3>
+<button class="schedule-slot" type="button" data-bs-toggle="modal" data-bs-target="#scheduleForm">
+<span>08.00–09.30</span>
+<strong>Olahraga</strong>
+<small>Wayan Putra · Lapangan</small>
+</button>
+</div>
+</div>
+<div class="d-flex flex-wrap gap-3 mt-4 small">
+<a href="states.html?state=class-conflict">Contoh bentrok kelas</a>
+<a href="states.html?state=teacher-conflict">Contoh bentrok guru</a>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<div class="modal fade" id="scheduleForm" tabindex="-1" aria-labelledby="scheduleFormLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-scrollable">
+<div class="modal-content">
+<form action="/admin/jadwal" method="post" data-prototype-form data-success-message="Slot jadwal berhasil disimpan." novalidate>
+<div class="modal-header">
+<div>
+<span class="eyebrow">XI IPA 1 · 2026/2027 Ganjil</span>
+<h2 class="modal-title h3" id="scheduleFormLabel">Tambah slot jadwal</h2>
+</div>
+<button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Tutup">
+</button>
+</div>
+<div class="modal-body">
+<div class="row g-3">
+<div class="col-md-4"><label class="form-label" for="schedule_form_class">Kelas <span class="required-mark">*</span></label><select class="form-select" id="schedule_form_class" name="classroom_id" required><option value="">Pilih kelas</option><option>XI IPA 1</option><option>XI IPA 2</option></select><div class="invalid-feedback">Pilih kelas.</div></div>
+<div class="col-md-4"><label class="form-label" for="schedule_subject">Mata pelajaran <span class="required-mark">*</span></label><select class="form-select" id="schedule_subject" name="subject_id" required><option value="">Pilih mapel</option><option>Matematika Wajib</option><option>Biologi</option></select><div class="invalid-feedback">Pilih mata pelajaran.</div></div>
+<div class="col-md-4"><label class="form-label" for="schedule_teacher">Guru pengampu <span class="required-mark">*</span></label><select class="form-select" id="schedule_teacher" name="teacher_id" required><option value="">Pilih guru</option><option>Ratna Dewi, M.Pd.</option><option>Ayu Lestari, S.Pd.</option></select><div class="invalid-feedback">Pilih guru sesuai penugasan.</div></div>
+<div class="col-md-4">
+<label class="form-label" for="schedule_day">Hari <span class="required-mark">*</span>
+</label>
+<select class="form-select" id="schedule_day" name="day_of_week" required>
+<option value="">Pilih hari</option>
+<option>Senin</option>
+<option>Selasa</option>
+<option>Rabu</option>
+<option>Kamis</option>
+<option>Jumat</option>
+<option>Sabtu</option>
+</select>
+<div class="invalid-feedback">Pilih hari.</div>
+</div>
+<div class="col-md-4">
+<label class="form-label" for="schedule_start">Mulai <span class="required-mark">*</span>
+</label>
+<input class="form-control" id="schedule_start" name="starts_at" type="time" required>
+<div class="invalid-feedback">Isi waktu mulai.</div>
+</div>
+<div class="col-md-4">
+<label class="form-label" for="schedule_end">Selesai <span class="required-mark">*</span>
+</label>
+<input class="form-control" id="schedule_end" name="ends_at" type="time" required>
+<div class="invalid-feedback">Isi waktu selesai.</div>
+</div>
+<div class="col-md-6">
+<label class="form-label" for="schedule_room">Ruang <span class="required-mark">*</span>
+</label>
+<input class="form-control" id="schedule_room" name="room" placeholder="R-11" required>
+<div class="invalid-feedback">Ruang wajib diisi.</div>
+</div>
+<div class="col-md-6">
+<label class="form-label" for="schedule_notes">Catatan</label>
+<input class="form-control" id="schedule_notes" name="notes" placeholder="Opsional">
+</div>
+<div class="col-12">
+<div class="alert alert-light border small mb-0">Sistem backend akan memeriksa bentrok waktu pada kelas dan guru yang sama sebelum menyimpan.</div>
+</div>
+</div>
+</div>
+<div class="modal-footer justify-content-between">
+<button class="btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteSchedule">Hapus Slot</button>
+<div>
+<button class="btn btn-outline-secondary me-2" type="button" data-bs-dismiss="modal">Batal</button>
+<button class="btn btn-primary" type="submit">Simpan Slot</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="modal fade" id="deleteSchedule" tabindex="-1" aria-labelledby="deleteScheduleLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-body p-4">
+<span class="eyebrow text-danger">Konfirmasi hapus</span>
+<h2 class="h3" id="deleteScheduleLabel">Hapus slot jadwal?</h2>
+<p>Matematika Wajib pada Senin, 07.15–08.45 tidak akan tampil lagi di portal siswa.</p>
+<div class="d-flex justify-content-end gap-2">
+<button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal">Batal</button>
+<form action="/admin/jadwal/1" method="post" data-prototype-form data-success-message="Slot jadwal berhasil dihapus.">
+<button class="btn btn-danger" type="submit">Ya, Hapus</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+<script src="../assets/js/admin.js">
+</script>
+</body>
+</html>

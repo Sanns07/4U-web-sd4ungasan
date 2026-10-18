@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kelola siswa, akun, dan riwayat kelas.">
+<title>Data Siswa — Panel Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../assets/css/simak.css" rel="stylesheet">
+</head>
+<body class="admin-body" data-admin-page="students">
+<!-- Suggested Blade: resources/views/admin/students/index.blade.php + _form.blade.php | Routes: resource /admin/siswa; POST /admin/siswa/{student}/reset-password -->
+<a class="btn btn-primary skip-link" href="#main-content">Lewati ke konten</a>
+<div class="admin-shell">
+<div id="adminShell">
+</div>
+<main class="admin-main" id="main-content">
+<div class="admin-content">
+<header class="admin-page-head">
+<div class="admin-breadcrumb">
+<span>
+<a href="index.html">Admin</a>
+</span>
+<span>Data Akademik</span>
+<span>Siswa</span>
+</div>
+<div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3">
+<div>
+<span class="eyebrow">Peserta didik & akun</span>
+<h1>Data siswa.</h1>
+<p class="text-muted-warm mb-0">Kelola identitas, akun login, dan penempatan kelas siswa.</p>
+</div>
+<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#studentForm">+ Tambah Siswa</button>
+</div>
+</header>
+<section class="admin-card">
+<div class="admin-card-body border-bottom">
+<form action="/admin/siswa" method="get" class="row g-2 align-items-end" data-filter-form>
+<div class="col-lg-4">
+<label class="form-label" for="student_search">Cari siswa</label>
+<input class="form-control" id="student_search" name="q" type="search" placeholder="Nama atau NISN">
+</div>
+<div class="col-sm-6 col-lg-3">
+<label class="form-label" for="student_class">Kelas aktif</label>
+<select class="form-select" id="student_class" name="class">
+<option>Semua kelas</option>
+<option>XI IPA 1</option>
+<option>XI IPA 2</option>
+<option>XI IPS 1</option>
+</select>
+</div>
+<div class="col-sm-6 col-lg-3">
+<label class="form-label" for="student_status">Status siswa/akun</label>
+<select class="form-select" id="student_status" name="status">
+<option>Semua status</option>
+<option>Aktif</option>
+<option>Belum aktif</option>
+<option>Alumni</option>
+<option>Diarsipkan</option>
+</select>
+</div>
+<div class="col-lg-2">
+<button class="btn btn-outline-primary w-100" type="submit">Terapkan</button>
+</div>
+</form>
+</div>
+<div class="table-responsive table-responsive-stack">
+<table class="table table-admin align-middle mb-0">
+<thead>
+<tr>
+<th scope="col">Siswa</th>
+<th scope="col">NISN</th>
+<th scope="col">Kelas aktif</th>
+<th scope="col">Akun</th>
+<th scope="col">Status</th>
+<th scope="col" class="text-end">Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Siswa">
+<strong>Alya Safitri</strong>
+<span class="d-block small text-muted-warm">Perempuan · Denpasar, 14 Mei 2009</span>
+</td>
+<td data-label="NISN">0087432195</td>
+<td data-label="Kelas aktif">
+<span class="badge badge-soft-success">XI IPA 1</span>
+<span class="d-block small text-muted-warm">2026/2027 Ganjil</span>
+</td>
+<td data-label="Akun">
+<span class="badge badge-soft-success">Aktif</span>
+<span class="d-block small">alya.safitri</span>
+</td>
+<td data-label="Status">Siswa aktif</td>
+<td data-label="Aksi" class="text-end">
+<div class="btn-group btn-group-sm">
+<button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#studentDetail">Detail</button>
+<button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#studentForm">Edit</button>
+</div>
+</td>
+</tr>
+<tr>
+<td data-label="Siswa">
+<strong>Bima Aditya</strong>
+<span class="d-block small text-muted-warm">Laki-laki · Gianyar, 2 Maret 2009</span>
+</td>
+<td data-label="NISN">0088124703</td>
+<td data-label="Kelas aktif">
+<span class="badge badge-soft-success">XI IPA 1</span>
+<span class="d-block small text-muted-warm">2026/2027 Ganjil</span>
+</td>
+<td data-label="Akun">
+<span class="badge text-bg-warning">Belum aktif</span>
+</td>
+<td data-label="Status">Siswa aktif</td>
+<td data-label="Aksi" class="text-end">
+<button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#studentForm">Edit</button>
+</td>
+</tr>
+<tr>
+<td data-label="Siswa">
+<strong>Citra Maharani</strong>
+<span class="d-block small text-muted-warm">Perempuan · Badung, 21 Juni 2008</span>
+</td>
+<td data-label="NISN">0079341628</td>
+<td data-label="Kelas aktif">
+<span class="text-muted-warm">Belum ditempatkan</span>
+</td>
+<td data-label="Akun">
+<span class="badge badge-soft-success">Aktif</span>
+</td>
+<td data-label="Status">Siswa aktif</td>
+<td data-label="Aksi" class="text-end">
+<button class="btn btn-sm btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#archiveStudent">Arsipkan</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admin-card-footer d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
+<span class="small text-muted-warm">Menampilkan 1–3 dari 328 siswa</span>
+<nav aria-label="Pagination siswa">
+<ul class="pagination pagination-sm mb-0">
+<li class="page-item disabled">
+<span class="page-link">Sebelumnya</span>
+</li>
+<li class="page-item active">
+<span class="page-link">1</span>
+</li>
+<li class="page-item">
+<a class="page-link" href="siswa.html?page=2">2</a>
+</li>
+<li class="page-item">
+<a class="page-link" href="siswa.html?page=2">Berikutnya</a>
+</li>
+</ul>
+</nav>
+</div>
+</section>
+</div>
+</main>
+</div>
+<div class="modal fade" id="studentForm" tabindex="-1" aria-labelledby="studentFormLabel" aria-hidden="true">
+<div class="modal-dialog modal-xl modal-dialog-scrollable">
+<div class="modal-content">
+<form action="/admin/siswa" method="post" data-prototype-form data-success-message="Data siswa dan akun berhasil disimpan." novalidate>
+<div class="modal-header">
+<div>
+<span class="eyebrow">Identitas & akses</span>
+<h2 class="modal-title h3" id="studentFormLabel">Tambah siswa</h2>
+</div>
+<button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Tutup">
+</button>
+</div>
+<div class="modal-body">
+<div class="admin-form-section">
+<h3 class="admin-form-section-title">Data pribadi</h3>
+<div class="row g-3">
+<div class="col-md-8">
+<label class="form-label" for="student_name">Nama lengkap <span class="required-mark">*</span>
+</label>
+<input class="form-control" id="student_name" name="name" required>
+<div class="invalid-feedback">Nama siswa wajib diisi.</div>
+</div>
+<div class="col-md-4">
+<label class="form-label" for="student_nisn">NISN <span class="required-mark">*</span>
+</label>
+<input class="form-control" id="student_nisn" name="nisn" inputmode="numeric" minlength="10" maxlength="10" required>
+<div class="invalid-feedback">NISN harus 10 digit dan unik.</div>
+</div>
+<div class="col-md-4">
+<label class="form-label" for="student_nis">NIS <span class="required-mark">*</span></label>
+<input class="form-control" id="student_nis" name="nis" inputmode="numeric" required>
+<div class="invalid-feedback">NIS wajib diisi dan harus unik.</div>
+</div>
+<div class="col-md-4">
+<label class="form-label" for="student_gender">Jenis kelamin <span class="required-mark">*</span>
+</label>
+<select class="form-select" id="student_gender" name="gender" required>
+<option value="">Pilih</option>
+<option>Perempuan</option>
+<option>Laki-laki</option>
+</select>
+<div class="invalid-feedback">Pilih jenis kelamin.</div>
+</div>
+<div class="col-md-4">
+<label class="form-label" for="student_birth_place">Tempat lahir</label>
+<input class="form-control" id="student_birth_place" name="birth_place">
+</div>
+<div class="col-md-4">
+<label class="form-label" for="student_birth_date">Tanggal lahir</label>
+<input class="form-control" id="student_birth_date" name="birth_date" type="date">
+</div>
+<div class="col-12">
+<label class="form-label" for="student_address">Alamat</label>
+<textarea class="form-control" id="student_address" name="address" rows="3">
+</textarea>
+</div>
+<div class="col-md-6">
+<label class="form-label" for="student_parent_name">Nama orang tua/wali</label>
+<input class="form-control" id="student_parent_name" name="parent_name">
+</div>
+<div class="col-md-6">
+<label class="form-label" for="student_parent_phone">Kontak orang tua/wali</label>
+<input class="form-control" id="student_parent_phone" name="parent_phone" type="tel">
+<div class="form-text">Digunakan untuk administrasi internal, tidak tampil di publik.</div>
+</div>
+</div>
+</div>
+<div class="admin-form-section">
+<h3 class="admin-form-section-title">Akun siswa</h3>
+<div class="row g-3">
+<div class="col-md-6">
+<label class="form-label" for="student_username">Nama pengguna <span class="required-mark">*</span>
+</label>
+<input class="form-control" id="student_username" name="username" autocomplete="username" required>
+<div class="form-text">Gunakan huruf kecil, angka, titik, atau garis bawah.</div>
+<div class="invalid-feedback">Nama pengguna wajib diisi dan harus unik.</div>
+</div>
+<div class="col-md-6">
+<label class="form-label" for="student_password">Kata sandi awal <span class="required-mark">*</span>
+</label>
+<div class="input-group">
+<input class="form-control" id="student_password" name="password" type="password" minlength="8" autocomplete="new-password" required>
+<button class="btn btn-outline-secondary" type="button" data-password-toggle="student_password">Tampilkan</button>
+</div>
+<div class="invalid-feedback">Gunakan minimal 8 karakter.</div>
+</div>
+<div class="col-md-6">
+<label class="form-label" for="student_password_confirmation">Konfirmasi kata sandi <span class="required-mark">*</span></label>
+<input class="form-control" id="student_password_confirmation" name="password_confirmation" type="password" minlength="8" autocomplete="new-password" required>
+<div class="invalid-feedback">Konfirmasi harus sama dengan kata sandi.</div>
+</div>
+</div>
+</div>
+<div class="admin-form-section mb-0">
+<h3 class="admin-form-section-title">Penempatan awal</h3>
+<div class="row g-3">
+<div class="col-md-6">
+<label class="form-label" for="student_period">Periode akademik</label>
+<select class="form-select" id="student_period" name="academic_period_id">
+<option value="">Belum ditempatkan</option>
+<option selected>2026/2027 · Ganjil (aktif)</option>
+</select>
+</div>
+<div class="col-md-6">
+<label class="form-label" for="student_enrollment_class">Kelas</label>
+<select class="form-select" id="student_enrollment_class" name="classroom_id">
+<option value="">Pilih kelas</option>
+<option>XI IPA 1</option>
+<option>XI IPA 2</option>
+</select>
+</div>
+<div class="col-md-6">
+<label class="form-label" for="student_graduation_year">Tahun kelulusan</label>
+<input class="form-control" id="student_graduation_year" name="graduation_year" type="number" min="2026" max="2100" placeholder="2028">
+</div>
+<div class="col-md-6">
+<label class="form-label" for="student_record_status">Status siswa <span class="required-mark">*</span></label>
+<select class="form-select" id="student_record_status" name="status" required><option value="active">Aktif</option><option value="alumni">Alumni</option><option value="archived">Diarsipkan</option></select>
+<div class="invalid-feedback">Pilih status siswa.</div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal">Batal</button>
+<button class="btn btn-primary" type="submit">Simpan Siswa</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="studentDetail" aria-labelledby="studentDetailLabel">
+<div class="offcanvas-header">
+<h2 class="h3 mb-0" id="studentDetailLabel">Detail siswa</h2>
+<button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="Tutup">
+</button>
+</div>
+<div class="offcanvas-body">
+<span class="eyebrow">NISN 0087432195</span>
+<h3>Alya Safitri</h3>
+<dl class="row small">
+<dt class="col-5">NIS</dt>
+<dd class="col-7">2611042</dd>
+<dt class="col-5">Kelas aktif</dt>
+<dd class="col-7">XI IPA 1</dd>
+<dt class="col-5">Periode</dt>
+<dd class="col-7">2026/2027 Ganjil</dd>
+<dt class="col-5">Tahun lulus</dt>
+<dd class="col-7">2028</dd>
+<dt class="col-5">Orang tua</dt>
+<dd class="col-7">Siti Rahma · 0812 6000 7821</dd>
+<dt class="col-5">Akun</dt>
+<dd class="col-7">alya.safitri</dd>
+</dl>
+<h4 class="h6 mt-4">Riwayat kelas</h4>
+<div class="list-group list-group-flush border-top border-bottom">
+<div class="list-group-item px-0">
+<strong>XI IPA 1</strong>
+<span class="d-block small text-muted-warm">2026/2027 · Ganjil · Aktif</span>
+</div>
+<div class="list-group-item px-0">
+<strong>X IPA 2</strong>
+<span class="d-block small text-muted-warm">2025/2026 · Genap</span>
+</div>
+</div>
+<form action="/admin/siswa/1/reset-password" method="post" class="mt-4" data-prototype-form data-success-message="Kata sandi sementara berhasil dibuat.">
+<button class="btn btn-outline-primary w-100" type="submit">Reset Kata Sandi</button>
+</form>
+</div>
+</div>
+<div class="modal fade" id="archiveStudent" tabindex="-1" aria-labelledby="archiveStudentLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-body p-4">
+<span class="eyebrow text-danger">Konfirmasi arsip</span>
+<h2 class="h3" id="archiveStudentLabel">Arsipkan siswa?</h2>
+<p>Akun Citra Maharani akan dinonaktifkan. Riwayat kelas dan jadwal tidak dihapus.</p>
+<div class="d-flex justify-content-end gap-2">
+<button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal">Batal</button>
+<form action="/admin/siswa/3/arsipkan" method="post" data-prototype-form data-success-message="Siswa berhasil diarsipkan.">
+<button class="btn btn-danger" type="submit">Arsipkan</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+<script src="../assets/js/admin.js">
+</script>
+</body>
+</html>
